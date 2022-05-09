@@ -1,0 +1,27 @@
+extends inicio 
+
+block formulario   
+    //- //el guion permite definir variables
+    //- -const estilo = "width:25%;height:20px"
+    //- //el simbolo  != permite insertar html parseado en lugar de string literal contenido en la variables
+    //- h1(style="color:blue;")!="ngrese datos Ejs" 
+    //- br
+
+    //- span=min+" "
+    //- meter(value= nivel min=min max=max style=estilo)
+    //- span=" "+max
+    div.container.mt-3
+        .jumbotron
+            h1(style="color:blue;")!="ngrese datos Ejs"
+            br
+            form(action="/personas" method="post")
+                div.form-group
+                    label(for="nombre") Nombre: 
+                    input#nombre.form-control(type='text', placeholder='nombre' name='nombre')
+                div.form-group
+                    label(for="apellido") Apellido: 
+                    input#apellido.form-control(type='text', placeholder='apellido' name='apellido')
+                div.form-group
+                    label(for="edad") Edad: 
+                    input#apellido.form-control(type='number', placeholder='edad' name='edad')
+                button.btn.btn-success.mt-3.mb-5(type="submit", name="enviar") Enviar
