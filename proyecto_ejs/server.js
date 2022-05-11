@@ -2,19 +2,25 @@ const express = require('express');
 
 const app = express();
 
-const personas =[];
+const productos =[];
 app.use(express.urlencoded({extended:true}))
 
 app.set('view engine', 'ejs');
 
 
+app.get('/productos', (req, res) => {
+    res.render('inicio_productos',{productos:productos})
+});
 app.get('/', (req, res) => {
-    res.render('inicio', {personas});
+    res.render('inicio', {productos:productos});
 });
 
-app.post('/personas', (req, res) => {
-    personas.push(req.body)
+app.post('/productos', (req, res) => {
+    if(req.body.nombre){
+        productos.push(req.body);
+    }
     res.redirect('/');
+
 });
 
 const server = app.listen(8080, ()=>{

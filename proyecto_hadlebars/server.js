@@ -3,7 +3,7 @@ const handlebars = require('express-handlebars')
 
 const app = express()
 
-const personas =[];
+const productos =[];
 app.use(express.urlencoded({extended:true}))
 app.engine('handlebars', handlebars.engine())
 
@@ -14,10 +14,16 @@ app.set('view engine', 'handlebars')
 app.get('/', (req, res) => {
     res.render('formulario')
 })
+app.get('/productos', (req, res) => {
+    res.render('historial',{productos:productos})
+})
 
-app.post('/personas', (req, res) => {
-    personas.push(req.body)
-    res.render('historial',{personas:personas})
+app.post('/productos', (req, res) => {
+    if(req.body.nombre){
+        productos.push(req.body);
+    }
+    res.redirect('/');
+
 });
 
 const server = app.listen(8080, ()=>{
