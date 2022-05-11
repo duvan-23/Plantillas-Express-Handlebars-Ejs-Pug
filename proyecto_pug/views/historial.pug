@@ -1,40 +1,23 @@
-extends formulario 
+extends inicio2
 
-block historial   
-    //- //el guion permite definir variables
-    //- -const estilo = "width:25%;height:20px"
-    //- //el simbolo  != permite insertar html parseado en lugar de string literal contenido en la variables
-    //- h1(style="color:blue;")!="ngrese datos Ejs" 
-    //- br
-
-    //- span=min+" "
-    //- meter(value= nivel min=min max=max style=estilo)
-    //- span=" "+max
-    //- div.container.mt-3
-    //-     .jumbotron
-    //-         h1(style="color:blue;")!="ngrese datos Ejs"
-    //-         br
-    //-         form(action="/personas" method="post")
-    //-             div.form-group
-    //-                 label(for="nombre") Nombre: 
-    //-                 input#nombre.form-control(type='text', placeholder='nombre' name='nombre')
-    //-             div.form-group
-    //-                 label(for="apellido") Apellido: 
-    //-                 input#apellido.form-control(type='text', placeholder='apellido' name='apellido')
-    //-             div.form-group
-    //-                 label(for="edad") Edad: 
-    //-                 input#apellido.form-control(type='number', placeholder='edad' name='edad')
-    //-             button.btn.btn-success.mt-3.mb-5(type="submit", name="enviar") Enviar
-    h2(style="color:crimson;")!="Historial"
-    -if(personas.length)
-        div.table-responsive
-            table.table.table-dark
-                tr(style="color:yellow;")
-                    th Nombre
-                each persona in personas
-                    tr
-                        td= persona.nombre
-                        td= persona.apellido
-                        td= persona.edad
-    -else
-        h2.alert.alert-danger!="no se encontraron datos"
+block historial  
+    div.container.mt-3
+        div.jumbotron
+            h2(style="color:blue;")!="Vista de Productos"
+            -if(productos.length)
+                div.table-responsive
+                    table.table.table-dark
+                        tr(style="color:yellow;")
+                            th Nombre
+                            th Precio 
+                            th(style="text-align:center") Foto
+                        each producto in productos
+                            tr
+                                td= producto.nombre
+                                td= producto.precio
+                                td(style="text-align:center")
+                                    img(src=producto.foto)
+            -else
+                h2.alert.alert-warning!="No hay productos"
+            form(action="/productos" method="post")
+                button.btn.btn-success.mt-3.mb-5(type="submit") Formulario 

@@ -3,17 +3,22 @@ const express = require('express')
 
 const app = express()
 
-const personas =[];
+const productos =[];
 app.use(express.urlencoded({extended:true}))
 app.set('views', './views')
 
 app.set('view engine', 'pug')
 
 app.get('/', (req, res) => {
-    res.render('historial', {personas:personas})
+    res.render('formulario', {productos:productos})
 })
-app.post('/personas', (req, res) => {
-    personas.push(req.body)
+app.get('/productos', (req, res) => {
+    res.render('historial', {productos:productos})
+})
+app.post('/productos', (req, res) => {
+    if(req.body.nombre){
+        productos.push(req.body);
+    }
     res.redirect('/');
 });
 
